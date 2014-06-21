@@ -54,9 +54,13 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mina (0.3.0)
+      open4
+      rake
     minitest (5.3.5)
     multi_json (1.10.1)
     mysql2 (0.3.14)
+    open4 (1.3.0)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -120,6 +124,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
+  mina
   mysql2
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
