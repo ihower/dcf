@@ -3,6 +3,10 @@ class DonatorsController < ApplicationController
   def index
     donators = Donator.active.page(params[:page]).per(100)
 
+    if params[:order].present? && ["income_amount", "payout_amount"].include?(params[:order])
+      donators = donators.order("#{params[:order]} DESC" )
+    end
+
     render :json => donators.map{ |p|
       { :id => p.id,
         :name => p.name,

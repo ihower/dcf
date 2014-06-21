@@ -8,4 +8,6 @@ class Transaction < ActiveRecord::Base
   scope :income, ->{ where(:transaction_type => "income") }
   scope :payout, ->{ where(:transaction_type => "payout") }
 
+  default_scope ->{ order("date DESC, id DESC") }
+
 end

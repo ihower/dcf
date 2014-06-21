@@ -9,6 +9,8 @@
 * /accounts/{id}/transactions
 * /donators
 * /donators/{id}/transactions
+* /donators/{id}?order=payout_amount
+* /donators/{id}?order=income_amount
 * /codes
 
 ## 資料來源

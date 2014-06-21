@@ -10,6 +10,7 @@ class TransactionsController < ApplicationController
 
     render :json => transactions.page(params[:page]).per(100).map{ |t|
       {
+        :id => t.id,
         :type => t.transaction_type,
         :date => t.date,
         :donator => t.donator.name,
