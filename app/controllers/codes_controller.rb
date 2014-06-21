@@ -7,7 +7,7 @@ class CodesController < ApplicationController
       { :id => c.id,
         :name => c.name
       }
-    }
+    }, :callback => params['callback']
   end
 
 end

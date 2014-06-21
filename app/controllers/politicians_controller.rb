@@ -21,7 +21,7 @@ class PoliticiansController < ApplicationController
         }
       }
       }
-    }
+    }, :callback => params['callback']
   end
 
 end

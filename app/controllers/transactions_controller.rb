@@ -28,7 +28,7 @@ class TransactionsController < ApplicationController
         :created_at => t.created_at
       }
 
-    }
+    }, :callback => params['callback']
   end
 
 end

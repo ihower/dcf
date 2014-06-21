@@ -11,7 +11,7 @@ class DonatorsController < ApplicationController
         :payout_amount => p.payout_amount,
         :amount => (p.income_amount.to_i - p.payout_amount.to_i)
       }
-    }
+    }, :callback => params['callback']
 
   end
 
