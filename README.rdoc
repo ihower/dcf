@@ -1,0 +1,7 @@
+== Dimensional Campaign Finance
+
+政治獻金資料分析和搜尋
+
+## 資料來源
+
+https://github.com/ronnywang/GovCash
