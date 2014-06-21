@@ -5,7 +5,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :donator
   belongs_to :code
 
-  scope :outcome, ->{ where(:transaction_type => "outcome") }
+  scope :income, ->{ where(:transaction_type => "income") }
   scope :payout, ->{ where(:transaction_type => "payout") }
 
 end
