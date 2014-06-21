@@ -12,7 +12,7 @@ task :import_transactions => :environment do
   Dir.glob("#{CSV_ACCOUNTS_DIR}/*.csv").each do |file_name|
     CSV.foreach(file_name, :headers => true) do |row|
       RawTransaction.create(
-        :account_name => File.basename(file_name),
+        :account_name => File.basename(file_name).gsub(".csv",""),
         :date => row[0],
         :code => row[1],
         :donator => row[2],
@@ -51,10 +51,41 @@ task :import_accounts => :environment do
 end
 
 task :normalize => :environment do
-  RawAccount.find_each do |p|
+  Politician.delete_all
+  Account.delete_all
+  Donator.delete_all
+  Code.delete_all
+  Transaction.delete_all
 
+  RawAccount.find_each do |ra|
+    p = Politician.find_or_create_by( :name => ra.politician_name )
+    a = Account.find_or_create_by( :name => ra.account_name, :politician_id => p.id )
   end
 
   RawTransaction.find_each do |t|
+    account = Account.find_or_create_by( :name => t.account_name )
+    donator = Donator.find_or_create_by( :name => t.donator, :identification => t.identification )
+    code = Code.find_or_create_by( :name => t.code )
+
+    if t.income.present?
+      transaction_type = "income"
+      amount = t.income
+    else
+      transaction_type = "payout"
+      amount = t.payout
+    end
+
+    Transaction.create( :transaction_type => transaction_type,
+                        :date => t.date,
+                        :account => account,
+                        :politician => account.politician,
+                        :donator => donator,
+                        :code => code,
+                        :amount => amount,
+                        :is_money => (t.is_money == "是"),
+                        :address => t.address,
+                        :page => t.page,
+                        :row => t.row
+                      )
   end
 end
