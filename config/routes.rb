@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get :income_codes
     get :payout_codes
     get :donators
-    get :companies
+    get :providers
 
     resources :transactions
   end

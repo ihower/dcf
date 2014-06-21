@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
         :by_incomes_url => account_income_codes_url(a),
         :by_payouts_url => account_payout_codes_url(a),
         :by_donators_url => account_donators_url(a),
-        :by_companies_url => account_companies_url(a),
+        :by_providers_url => account_providers_url(a),
         :by_months_url => account_months_url(a)
       }
     }
@@ -67,17 +67,23 @@ class AccountsController < ApplicationController
     account = Account.find(params[:account_id])
     data = account.transactions.income.group(:donator_id).select("donator_id, sum(amount) as total")
     render :json => data.sort_by{ |x| x.total || 0 }.reverse.map{ |x|
-      { :donator => Donator.find_by_id(x.donator_id).try(:name),
+      d = Donator.find_by_id(x.donator_id)
+
+      { :donator => d.try(:name),
+        :donator_identification => d.try(:identification),
         :total => x.total
       }
     }
   end
 
-  def companies
+  def providers
     account = Account.find(params[:account_id])
     data = account.transactions.payout.group(:donator_id).select("donator_id, sum(amount) as total")
     render :json => data.sort_by{ |x| x.total || 0 }.reverse.map{ |x|
-      { :company => Donator.find_by_id(x.donator_id).try(:name),
+      d = Donator.find_by_id(x.donator_id)
+
+      { :provider => d.try(:name),
+        :provider_identification => d.try(:identification),
         :total => x.total
       }
     }

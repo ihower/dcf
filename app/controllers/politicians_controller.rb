@@ -23,7 +23,7 @@ class PoliticiansController < ApplicationController
           :by_incomes_url => account_income_codes_url(a),
           :by_payouts_url => account_payout_codes_url(a),
           :by_donators_url => account_donators_url(a),
-          :by_companies_url => account_companies_url(a),
+          :by_providers_url => account_providers_url(a),
           :by_months_url => account_months_url(a)
         }
       }
