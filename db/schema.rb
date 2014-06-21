@@ -13,24 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20140621033111) do
 
-  create_table "raw_cashes", force: true do |t|
-    t.integer  "no"
+  create_table "raw_transactions", force: true do |t|
+    t.string   "account_name"
+    t.date     "date"
+    t.string   "code"
+    t.string   "donator"
+    t.string   "identification"
+    t.integer  "income"
+    t.integer  "payout"
+    t.string   "is_money"
+    t.string   "address"
     t.integer  "page"
     t.integer  "row"
-    t.date     "txn_dt"
-    t.string   "txn_code"
-    t.string   "user_nm"
-    t.string   "identification"
-    t.integer  "receive_money"
-    t.integer  "pay_money"
-    t.string   "cash_ind"
-    t.string   "area"
-    t.string   "correct_rate"
-    t.string   "correct_rate_imp"
-    t.string   "file"
-    t.string   "account"
-    t.string   "position"
-    t.float    "term"
     t.datetime "created_at"
   end
 
