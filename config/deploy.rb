@@ -13,7 +13,7 @@ require 'mina/git'
 set :domain, 'dcf.ihower.tw'
 set :deploy_to, '/home/ihower/dcf'
 set :repository, 'git@github.com:ihower/dcf.git'
-set :branch, 'production'
+set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
