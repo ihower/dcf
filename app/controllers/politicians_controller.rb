@@ -11,7 +11,7 @@ class PoliticiansController < ApplicationController
       :payout_amount => p.payout_amount,
       :amount => (p.income_amount.to_i - p.payout_amount.to_i),
       :transactions_url => politician_transactions_url(p),
-      :accounts => p.accounts.map{ |a|
+      :accounts => p.accounts.active.map{ |a|
         {
           :id => a.id,
           :name => a.name,
