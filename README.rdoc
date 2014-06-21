@@ -1,22 +1,10 @@
 == Dimensional Campaign Finance
 
-政治獻金資料分析和搜尋 http://dcf.ihower.tw
+政治獻金資料分析 http://dcf.ihower.tw
 
 Chrome 建議安裝 JSON Formatter extension: https://github.com/callumlocke/json-formatter
 
-## APIs
-
-* /politicians
-* /politicians/{id}/transactions
-* /accounts/{id}/transactions
-* /donators
-* /donators/{id}/transactions
-* /donators/{id}?order=payout_amount
-* /donators/{id}?order=income_amount
-* /codes
-
-## 資料來源
+=== 資料來源
 
 * https://github.com/ronnywang/GovCash
 * https://github.com/ronnywang/sunshine.cy.gov.tw
-
