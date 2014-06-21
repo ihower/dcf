@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
       :entities_by_payout_url => entities_url( :order => "payout_amount" ),
       :codes_url => codes_url,
       :repository_url => "https://github.com/ihower/dcf"
-    }
+    }, :callback => params['callback']
   end
 
 end

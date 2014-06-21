@@ -4,6 +4,10 @@
 
 Chrome 建議安裝 JSON Formatter extension: https://github.com/callumlocke/json-formatter
 
+=== JSONP
+
+每個 URL 都可以加上 callback 參數成為 JSONP，例如 http://dcf.ihower.tw/accounts?callback=foo
+
 === 資料來源
 
 * https://github.com/ronnywang/GovCash

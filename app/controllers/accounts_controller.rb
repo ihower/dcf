@@ -16,7 +16,7 @@ class AccountsController < ApplicationController
         :by_providers_url => account_providers_url(a),
         :by_months_url => account_months_url(a)
       }
-    }
+    }, :callback => params['callback']
   end
 
   def months
@@ -40,7 +40,7 @@ class AccountsController < ApplicationController
         :income_total => y[:income_total],
         :payout_total => y[:payout_total]
       }
-    }
+    }, :callback => params['callback']
   end
 
   def income_codes
@@ -53,7 +53,7 @@ class AccountsController < ApplicationController
         :total => x.total,
         :transactions_url => account_transactions_url(account, :code_id => c.try(:id))
       }
-    }
+    }, :callback => params['callback']
   end
 
   def payout_codes
@@ -66,7 +66,7 @@ class AccountsController < ApplicationController
         :total => x.total,
         :transactions_url => account_transactions_url(account, :code_id => c.try(:id))
       }
-    }
+    }, :callback => params['callback']
   end
 
   def donators
@@ -80,7 +80,7 @@ class AccountsController < ApplicationController
         :total => x.total,
         :transactions_url => account_transactions_url(account, :entity_id => d.id)
       }
-    }
+    }, :callback => params['callback']
   end
 
   def providers
@@ -94,7 +94,7 @@ class AccountsController < ApplicationController
         :total => x.total,
         :transactions_url => account_transactions_url(account, :entity_id => d.id)
       }
-    }
+    }, :callback => params['callback']
   end
 
 end
