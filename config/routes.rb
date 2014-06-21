@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
 
   resources :accounts do
+    get :months
     get :income_codes
     get :payout_codes
     get :donators

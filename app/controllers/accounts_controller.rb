@@ -13,7 +13,32 @@ class AccountsController < ApplicationController
         :by_incomes_url => account_income_codes_url(a),
         :by_payouts_url => account_payout_codes_url(a),
         :by_donators_url => account_donators_url(a),
-        :by_companies_url => account_companies_url(a)
+        :by_companies_url => account_companies_url(a),
+        :by_months_url => account_months_url(a)
+      }
+    }
+  end
+
+  def months
+    account = Account.find(params[:account_id])
+    income_data = account.transactions.income.group("month, year").select("EXTRACT(MONTH from date) as month, EXTRACT(YEAR from date) as year, sum(amount) as total")
+    payout_data = account.transactions.payout.group("month, year").select("EXTRACT(MONTH from date) as month, EXTRACT(YEAR from date) as year, sum(amount) as total")
+
+    data = {}
+    income_data.each{ |x|
+      data[ Date.new(x.year, x.month, 1) ] ||= {}
+      data[ Date.new(x.year, x.month, 1) ][:income_total] = x.total
+    }
+
+    payout_data.each{ |x|
+      data[ Date.new(x.year, x.month, 1) ] ||= {}
+      data[ Date.new(x.year, x.month, 1) ][:payout_total] = x.total
+    }
+
+    render :json => Hash[ data.sort_by{ |x,y| x } ].each{ |x,y|
+      { :date => x,
+        :income_total => y[:income_total],
+        :payout_total => y[:payout_total]
       }
     }
   end
