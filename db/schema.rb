@@ -11,12 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621054001) do
+ActiveRecord::Schema.define(version: 20140621064605) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
     t.integer  "politician_id"
     t.datetime "created_at"
+    t.integer  "transactions_count"
+    t.integer  "income_amount"
+    t.integer  "payout_amount"
   end
 
   add_index "accounts", ["politician_id"], name: "index_accounts_on_politician_id", using: :btree
@@ -32,6 +35,9 @@ ActiveRecord::Schema.define(version: 20140621054001) do
     t.string   "name"
     t.string   "identification"
     t.datetime "created_at"
+    t.integer  "transactions_count"
+    t.integer  "income_amount"
+    t.integer  "payout_amount"
   end
 
   add_index "donators", ["identification"], name: "index_donators_on_identification", using: :btree
@@ -40,6 +46,9 @@ ActiveRecord::Schema.define(version: 20140621054001) do
   create_table "politicians", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
+    t.integer  "transactions_count"
+    t.integer  "income_amount"
+    t.integer  "payout_amount"
   end
 
   add_index "politicians", ["name"], name: "index_politicians_on_name", using: :btree

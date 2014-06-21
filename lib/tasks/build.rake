@@ -3,7 +3,7 @@
 CSV_ACCOUNTS_DIR = '/Users/ihower/g0v/GovCash/accounts'
 CSV_ACCOUNTS_FILE = '/Users/ihower/g0v/sunshine.cy.gov.tw/list.csv'
 
-task :build => [:import_transactions, :import_accounts, :normalize]
+task :build => [:import_transactions, :import_accounts, :normalize, :calculate]
 
 # https://github.com/ronnywang/GovCash/tree/master/accounts
 task :import_transactions => :environment do
@@ -87,5 +87,28 @@ task :normalize => :environment do
                         :page => t.page,
                         :row => t.row
                       )
+  end
+end
+
+task :calculate => :environment do
+  Account.find_each do |a|
+    a.transactions_count = a.transactions.count
+    a.income_amount = a.transactions.income.sum(:amount)
+    a.payout_amount = a.transactions.payout.sum(:amount)
+    a.save
+  end
+
+  Politician.find_each do |p|
+    p.transactions_count = p.accounts.map{ |a| a.transactions_count }.sum
+    p.income_amount = p.accounts.map{ |a| a.income_amount }.sum
+    p.payout_amount = p.accounts.map{ |a| a.payout_amount }.sum
+    p.save
+  end
+
+  Donator.find_each do |d|
+    d.transactions_count = d.transactions.count
+    d.income_amount = d.transactions.income.sum(:amount)
+    d.payout_amount = d.transactions.payout.sum(:amount)
+    d.save
   end
 end
