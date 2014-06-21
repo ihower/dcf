@@ -14,7 +14,8 @@ class DonatorsController < ApplicationController
         :transactions_count => p.transactions_count,
         :income_amount => p.income_amount,
         :payout_amount => p.payout_amount,
-        :amount => (p.income_amount.to_i - p.payout_amount.to_i)
+        :amount => (p.income_amount.to_i - p.payout_amount.to_i),
+        :transactions_url => donator_transactions_url(p)
       }
     }, :callback => params['callback']
 
