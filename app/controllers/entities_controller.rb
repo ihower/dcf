@@ -1,4 +1,4 @@
-class DonatorsController < ApplicationController
+class EntitiesController < ApplicationController
 
   def index
     donators = Donator.active.page(params[:page]).per(100)
@@ -15,7 +15,7 @@ class DonatorsController < ApplicationController
         :income_amount => p.income_amount,
         :payout_amount => p.payout_amount,
         :amount => (p.income_amount.to_i - p.payout_amount.to_i),
-        :transactions_url => donator_transactions_url(p)
+        :transactions_url => entity_transactions_url(p)
       }
     }, :callback => params['callback']
 

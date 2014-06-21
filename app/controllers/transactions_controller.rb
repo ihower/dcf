@@ -3,6 +3,8 @@ class TransactionsController < ApplicationController
   def index
     transactions = Transaction.all
 
+    params[:donator_id] = params[:entity_id]
+
     filters = [:politician_id, :account_id, :donator_id, :code_id]
     filters.each do |f|
       transactions = transactions.where( f => params[f] ) if params[f].present?

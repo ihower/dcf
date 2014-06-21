@@ -78,7 +78,7 @@ class AccountsController < ApplicationController
       { :donator => d.try(:name),
         :donator_identification => d.try(:identification),
         :total => x.total,
-        :transactions_url => account_transactions_url(account, :donator_id => d.id)
+        :transactions_url => account_transactions_url(account, :entity_id => d.id)
       }
     }
   end
@@ -92,7 +92,7 @@ class AccountsController < ApplicationController
       { :provider => d.try(:name),
         :provider_identification => d.try(:identification),
         :total => x.total,
-        :transactions_url => account_transactions_url(account, :donator_id => d.id)
+        :transactions_url => account_transactions_url(account, :entity_id => d.id)
       }
     }
   end

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :transactions
   end
 
-  resources :donators do
+  resources :entities do
     resources :transactions
   end
 
