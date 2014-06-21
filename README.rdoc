@@ -2,6 +2,8 @@
 
 政治獻金資料分析和搜尋 http://dcf.ihower.tw
 
+Chrome 建議安裝 JSON Formatter extension: https://github.com/callumlocke/json-formatter
+
 ## APIs
 
 * /politicians
@@ -17,3 +19,4 @@
 
 * https://github.com/ronnywang/GovCash
 * https://github.com/ronnywang/sunshine.cy.gov.tw
+
