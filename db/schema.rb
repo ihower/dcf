@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140621054001) do
 
   add_index "politicians", ["name"], name: "index_politicians_on_name", using: :btree
 
-  create_table "raw_politicians", force: true do |t|
+  create_table "raw_accounts", force: true do |t|
     t.string   "account_name"
     t.string   "politician_name"
     t.string   "bank_name"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140621054001) do
     t.datetime "created_at"
   end
 
-  add_index "raw_politicians", ["account_name"], name: "index_raw_politicians_on_account_name", using: :btree
+  add_index "raw_accounts", ["account_name"], name: "index_raw_accounts_on_account_name", using: :btree
 
   create_table "raw_transactions", force: true do |t|
     t.string   "account_name"

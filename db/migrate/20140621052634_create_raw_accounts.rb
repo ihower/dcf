@@ -1,6 +1,6 @@
-class CreateRawPoliticians < ActiveRecord::Migration
+class CreateRawAccounts < ActiveRecord::Migration
   def change
-    create_table :raw_politicians do |t|
+    create_table :raw_accounts do |t|
       t.string :account_name
       t.string :politician_name
       t.string :bank_name
@@ -11,6 +11,6 @@ class CreateRawPoliticians < ActiveRecord::Migration
       t.datetime :created_at
     end
 
-    add_index :raw_politicians, :account_name
+    add_index :raw_accounts, :account_name
   end
 end
